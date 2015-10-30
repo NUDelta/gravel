@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+    "name":    "Gravel",
+    "version": "0.1",
+    "devtools_page": "devtools.html",
+    "offline_enabled": true,
+
+    "background": {
+        "persistent": false,
+        "scripts": ["background.js"]
+    },
+
+    "content_scripts": [{
+        "matches":    ["<all_urls>"],
+        "js":         ["jquery-1.11.3.js", "contentscript.js"],
+        "run_at":     "document_idle",
+        "all_frames": false
+    }],
+
+    "permissions": []
+}
