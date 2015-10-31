@@ -4,18 +4,18 @@
     "version": "0.1",
     "devtools_page": "devtools.html",
     "offline_enabled": true,
-
     "background": {
         "persistent": false,
         "scripts": ["background.js"]
     },
-
+    "permissions": [
+        "<all_urls>",
+        "tabs"
+    ],
     "content_scripts": [{
         "matches":    ["<all_urls>"],
         "js":         ["jquery-1.11.3.js", "contentscript.js"],
         "run_at":     "document_idle",
-        "all_frames": false
-    }],
-
-    "permissions": []
+        "all_frames": true
+    }]
 }
