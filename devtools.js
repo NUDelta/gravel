@@ -1,14 +1,14 @@
 chrome.devtools.panels.create("Gravel", "gravel.png", "panel.html", function(panel) { 
-	console.log("hello from callback"); 
+	console.log("hello from callback");
 });
 
-var tabId = chrome.devtools.inspectedWindow.tabId;
-var panelPort = chrome.extension.connect({name: "panel"});
-panelPort.postMessage({
-  name: "init",
-  data: tabId
+// Create a connection to the background page
+var backgroundPageConnection = chrome.runtime.connect({
+    name: "panel"
 });
 
-panelPort.onMessage.addListener(function(msg) {
-	console.log('tab data ' + msg);
+console.log('background');
+backgroundPageConnection.postMessage({
+    name: 'init',
+    tabId: chrome.devtools.inspectedWindow.tabId
 });

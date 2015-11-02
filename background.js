@@ -1,12 +1,13 @@
 var connections = {};
 
 chrome.extension.onConnect.addListener(function (port) {
+	console.log(port);
 	var extensionListener = function(message, sender, sendResponse) {
-		console.log(message);
 		// original connection event doesn't include tab id of dev tools page, need to send it explicitly
 		if (message.name == 'init') {
-			console.log('inside init');
+			console.log(message.tabId);
 			connections[message.tabId] = port;
+			console.log(connections);
 			return;
 		}
 		// other message handling
@@ -28,10 +29,11 @@ chrome.extension.onConnect.addListener(function (port) {
 });
 
 
-// receive message from content script
+// receive message from content script and relay to devtools page for the current tab
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
 	// messages form content script should ahve sender.tab set
 	if (sender.tab) {
+		console.log('in sender tab');
 		var tabId = sender.tab.id;
 		if (tabId in connections) {
 			console.log('success');

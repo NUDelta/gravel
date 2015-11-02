@@ -5,7 +5,7 @@
     "devtools_page": "devtools.html",
     "offline_enabled": true,
     "background": {
-        "persistent": false,
+        "persistent": true,
         "scripts": ["background.js"]
     },
     "permissions": [
