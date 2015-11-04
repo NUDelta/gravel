@@ -5,6 +5,8 @@ var panelPorts = {};
 chrome.extension.onConnect.addListener(function (port) {
   if (port.name !== "gravelpanel") return;
 
+  console.log("Handshake received from gravel");
+
   port.onMessage.addListener(function (message) {
     if (message.name == "identification") {
       var tabId = message.data;
