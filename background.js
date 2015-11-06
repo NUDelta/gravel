@@ -23,6 +23,7 @@ chrome.extension.onMessage.addListener(function (message, sender, sendResponse) 
     //Get the right port for the panel you want
     var port = panelPorts[sender.tab.id];
     if (port) {
+      console.log(message);
       //Send the message to the panel
       port.postMessage(message);
     }

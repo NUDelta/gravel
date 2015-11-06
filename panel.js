@@ -1,6 +1,7 @@
 var runInPage = function (fn, callback) {
   var args = Array.prototype.slice.call(arguments, 2);
   var evalCode = "(" + fn.toString() + ").apply(this, " + JSON.stringify(args) + ");";
+  console.log(args);
   chrome.devtools.inspectedWindow.eval(evalCode, {}, callback);
 };
 
@@ -24,6 +25,8 @@ $(document).ready(function () {
 
     var foo = function (arg1, arg2) {
       console.log("Gravel: Injected event is being dispatched.");
+      console.log(arg1);
+      console.log(arg2);
       window.dispatchEvent(new CustomEvent("JSTrace", {"detail": [arg1, arg2]}));
     };
 
